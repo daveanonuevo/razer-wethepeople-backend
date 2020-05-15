@@ -18,12 +18,13 @@ router.get('/:number', (req, res, next) => {
             });
         } else {
             let total = 0;
+            console.log(result.rows)
             for (let x = 0; x < result.rows.length; x++) {
-                if (result.rows.type === 'DEPOSIT')
+                if (result.rows[x].type === 'DEPOSIT')
                     total = total + parseFloat(result.rows[x].amount);
-                if (result.rows.type === 'WITHDRAW')
+                if (result.rows[x].type === 'WITHDRAW')
                     total = total - parseFloat(result.rows[x].amount);
-                if (result.rows.type === 'SPEND')
+                if (result.rows[x].type === 'SPEND')
                     total = total - parseFloat(result.rows[x].amount);
                 
             

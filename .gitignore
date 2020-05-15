@@ -182,3 +182,8 @@ fabric.properties
 
 .env
 filetest
+<<<<<<< HEAD
+=======
+
+>>>>>>> Dave-Dev
+*.env

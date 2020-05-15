@@ -11,8 +11,9 @@ if(process.env.POSTGRES_HOST !== 'localhost'){
 	port: process.env.POSTGRES_PORT,
 	host: process.env.POSTGRES_HOST,
 	connectionString: process.env.POSTGRES_STRING,
-	ssl: true,
+	ssl: { rejectUnauthorized: false },
 	max: 15,
+	
 });}
 else{
 	pool = new Pool({
