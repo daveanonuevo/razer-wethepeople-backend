@@ -3,10 +3,10 @@ const express = require('express');
 const router = express.Router();
 
 const moneyRouter = require('./money');
-const activitiesRouter=require('./activities');
+const servicesRouter=require('./services');
 
 router.use('/money', moneyRouter);
-router.use('/activities',activitiesRouter);
+router.use('/services',servicesRouter);
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.send("/ endpoint");

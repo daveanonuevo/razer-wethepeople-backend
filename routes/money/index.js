@@ -10,7 +10,7 @@ router.get('/:number', (req, res, next) => {
      * Gets balance of their account
      * API will get the ID from the URL query string
      */
-    db.query("SELECT * FROM public.money WHERE number=$1", [req.params.number], (err, result) => {
+    db.query("SELECT * FROM public.money ", [req.params.number], (err, result) => {
         if (result === undefined) {
             res.set('Content-Type', 'application/json').status(404).send({
                 success: false,
@@ -25,11 +25,10 @@ router.get('/:number', (req, res, next) => {
                     total = total - parseFloat(result.rows[x].amount);
                 if (result.rows.type === 'SPEND')
                     total = total - parseFloat(result.rows[x].amount);
+                
+            
             }
-            res.set('Content-Type', 'application/json').status(200).send({
-                number: req.params.number,
-                total
-            });
+            console.log(result.rows.length);
         }
     })
 });
