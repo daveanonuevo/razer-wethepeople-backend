@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS public.money (
     uuid UUID NOT NULL UNIQUE,
     number TEXT NOT NULL,
-    category TEXT NOT NULL,
+    type TEXT NOT NULL,
     amount TEXT NOT NULL,
 
 

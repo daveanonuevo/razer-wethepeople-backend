@@ -19,11 +19,11 @@ router.get('/:number', (req, res, next) => {
         } else {
             let total = 0;
             for (let x = 0; x < result.rows.length; x++) {
-                if (result.rows.category === 'DEPOSIT')
+                if (result.rows.type === 'DEPOSIT')
                     total = total + parseFloat(result.rows[x].amount);
-                if (result.rows.category === 'WITHDRAW')
+                if (result.rows.type === 'WITHDRAW')
                     total = total - parseFloat(result.rows[x].amount);
-                if (result.rows.category === 'SPEND')
+                if (result.rows.type === 'SPEND')
                     total = total - parseFloat(result.rows[x].amount);
             }
             res.set('Content-Type', 'application/json').status(200).send({
@@ -43,12 +43,12 @@ router.post('/', (req, res, next) => {
      */
     /** Received API structure
      * @param req.body.number
-     * @param req.body.category
+     * @param req.body.type
      * @param req.body.amount
      * @param req.body.title
      * @param req.body.description
      */
-    if (!req.body.number || !req.body.category || !req.body.amount || !req.body.title || !req.body.description)
+    if (!req.body.number || !req.body.type || !req.body.amount || !req.body.title || !req.body.description)
         res.set('Content-Type', 'application/json')
             .status(400)
             .send({
@@ -56,10 +56,10 @@ router.post('/', (req, res, next) => {
                 error: "Not all data is given"
             });
     const uuid = uuidv4();
-    db.query("INSERT INTO public.money(uuid, number, category, amount, title, description) VALUES ($1, $2, $3, $4, $5, %6)", [
+    db.query("INSERT INTO public.money(uuid, number, type, amount, title, description) VALUES ($1, $2, $3, $4, $5, %6)", [
         uuid,
         req.body.number,
-        req.body.category,
+        req.body.type,
         req.body.amount,
         req.body.title,
         req.body.description
