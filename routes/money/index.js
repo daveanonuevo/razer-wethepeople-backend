@@ -57,7 +57,7 @@ router.post('/', (req, res, next) => {
                 error: "Not all data is given"
             });
     const uuid = uuidv4();
-    db.query("INSERT INTO public.money(uuid, number, type, amount, title, description) VALUES ($1, $2, $3, $4, $5, %6)", [
+    db.query("INSERT INTO public.money(uuid, number, type, amount, title, description) VALUES ($1, $2, $3, $4, $5, $6)", [
         uuid,
         req.body.number,
         req.body.type,
